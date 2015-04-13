@@ -190,13 +190,15 @@ def load_location_data(filename):
     return cities, states, populations
 
 # This method aggregates all of the highest rated restaurants into a dict
-def find_all(city, state, category_filter):
+def find_all(city, state, category_filter, num_queries):
     city_state = '%s, %s' % (city, state)
     # set default dict
     highest_rated = {state: {}}
     highest_rated[state] = {"city": city, "restaurants": []}
     # increment offset by 20
-    for offset in range(0,20,20): # this will return a maximum of 100 (see query_api for reasons why it would return fewer)
+    # maximum returned restaurants will be num_queries / 20 * 20 (not always = to num_queries)
+
+    for offset in range(0,num_queries,20):
         # find 20 restaurants
         restaurants = find_restaurants(category_filter, city_state, offset)
         # add restaurants to highest_rated
@@ -214,7 +216,7 @@ def save_restaurants(category_filter):
         city = cities[i]
         state = states[i]
         # find highest rated for this city and state
-        highest_rated = find_all(city, state, category_filter)
+        highest_rated = find_all(city, state, category_filter, 40) # currently search for 100
         # add to main category dict
         cat[category_filter].append(highest_rated)
     # write to JSON
