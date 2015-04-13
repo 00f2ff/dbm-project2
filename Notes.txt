@@ -46,9 +46,3 @@ File save data structure:
 		"restaurants": [ ... ]
 	},...
 }
-
-
-To Do:
-Kentucky,KY,Louisville/Jefferson County,609893
-
-Actually includes population for both places, so I need to add some logic that checks for a "/" in location, and if present splits location into two parts that could match a business's location
