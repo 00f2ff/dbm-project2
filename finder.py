@@ -216,7 +216,7 @@ def save_restaurants(category_filter):
         city = cities[i]
         state = states[i]
         # find highest rated for this city and state
-        highest_rated = find_all(city, state, category_filter, 40) # currently search for 100
+        highest_rated = find_all(city, state, category_filter, 40)
         # add to main category dict
         cat[category_filter].append(highest_rated)
     # write to JSON
