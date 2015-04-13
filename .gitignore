@@ -1,0 +1,3 @@
+# Exclude file with key, secrets and token
+keys.py
+keys.pyc

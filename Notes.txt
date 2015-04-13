@@ -1,0 +1,54 @@
+Scope:
+ - Most populous city in each state
+ - xxx restaurants per city of a particular category / search term
+
+Metrics:
+ - Take 'rating' and 'review_count' from each business
+
+Search Specifications:
+ - Change sort to "Highest Rated" and update offset
+
+Computation:
+ - Multiply rating by review_count for each state to find weight
+  o Add weight to one list, and review_count to a total_review_count variable
+  o Divide weight by total_review_count and store for each state in dict format
+
+
+Things to keep in mind:
+ - The rating Yelp returns for each restaurant is rounded somehow
+ - Yelp uses an algorithm to decide which restaurants are the highest-rated which is dependent on both rating and review_count
+
+Starting categories
+Chinese: 'chinese'
+Pizza: 'pizza'
+Mexican: 'mexican'
+Bars: 'bars'
+https://www.yelp.com/developers/documentation/v2/all_category_list 
+
+
+
+Passing to appspot data structure:
+Except this is a value of key "Pizza" or any category used.
+For saving purposes: file saved as "Pizza.json"
+{
+	"DC": {
+		"city": "Washington",
+		"population": 700000,
+		"rating": 3.8,
+		"reviews": 8000
+	},...
+}
+
+File save data structure:
+{
+	"DC": {
+		"city": "Washington",
+		"restaurants": [ ... ]
+	},...
+}
+
+
+To Do:
+Kentucky,KY,Louisville/Jefferson County,609893
+
+Actually includes population for both places, so I need to add some logic that checks for a "/" in location, and if present splits location into two parts that could match a business's location
