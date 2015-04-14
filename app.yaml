@@ -1,0 +1,29 @@
+application: dbm-project2
+version: 1
+runtime: python27
+api_version: 1
+threadsafe: yes
+
+handlers:
+- url: /favicon\.ico
+  static_files: favicon.ico
+  upload: favicon\.ico
+
+- url: /data
+  static_dir: data
+  application_readable: true
+  # mime_type: application/json
+- url: /d3
+  static_dir: d3
+- url: /stylesheets
+  static_dir: stylesheets
+- url: /js
+  static_dir: js
+- url: .*
+  script: main.app
+
+libraries:
+- name: webapp2
+  version: "2.5.2"
+- name: jinja2
+  version: latest

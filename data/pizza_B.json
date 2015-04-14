@@ -1,0 +1,514 @@
+{
+  "pizza": [
+    {
+      "AL": {
+        "city": "Birmingham", 
+        "review_count": 688, 
+        "rating": 3.8248546511627906, 
+        "reviews_by_pop": 0.0032435541433104053, 
+        "restaurant_count": 24, 
+        "population": 212113
+      }
+    }, 
+    {
+      "AK": {
+        "city": "Anchorage", 
+        "review_count": 1322, 
+        "rating": 3.98071104387292, 
+        "reviews_by_pop": 0.004392756271805948, 
+        "restaurant_count": 39, 
+        "population": 300950
+      }
+    }, 
+    {
+      "AZ": {
+        "city": "Phoenix", 
+        "review_count": 7141, 
+        "rating": 4.23407085842319, 
+        "reviews_by_pop": 0.0047186174933112725, 
+        "restaurant_count": 24, 
+        "population": 1513367
+      }
+    }, 
+    {
+      "AR": {
+        "city": "Little Rock", 
+        "review_count": 600, 
+        "rating": 3.6966666666666668, 
+        "reviews_by_pop": 0.003040175924846851, 
+        "restaurant_count": 27, 
+        "population": 197357
+      }
+    }, 
+    {
+      "CA": {
+        "city": "Los Angeles", 
+        "review_count": 14493, 
+        "rating": 4.006554888566894, 
+        "reviews_by_pop": 0.0037311674901082744, 
+        "restaurant_count": 30, 
+        "population": 3884307
+      }
+    }, 
+    {
+      "CO": {
+        "city": "Denver", 
+        "review_count": 4460, 
+        "rating": 4.023766816143498, 
+        "reviews_by_pop": 0.006866873494022279, 
+        "restaurant_count": 20, 
+        "population": 649495
+      }
+    }, 
+    {
+      "CT": {
+        "city": "Bridgeport", 
+        "review_count": 256, 
+        "rating": 3.923828125, 
+        "reviews_by_pop": 0.0017389414194109336, 
+        "restaurant_count": 11, 
+        "population": 147216
+      }
+    }, 
+    {
+      "DE": {
+        "city": "Wilmington", 
+        "review_count": 607, 
+        "rating": 3.6490939044481054, 
+        "reviews_by_pop": 0.008486543166724921, 
+        "restaurant_count": 27, 
+        "population": 71525
+      }
+    }, 
+    {
+      "DC": {
+        "city": "Washington", 
+        "review_count": 10060, 
+        "rating": 3.987375745526839, 
+        "reviews_by_pop": 0.015561939147558431, 
+        "restaurant_count": 23, 
+        "population": 646449
+      }
+    }, 
+    {
+      "FL": {
+        "city": "Jacksonville", 
+        "review_count": 1677, 
+        "rating": 4.045617173524151, 
+        "reviews_by_pop": 0.0019903083731810396, 
+        "restaurant_count": 35, 
+        "population": 842583
+      }
+    }, 
+    {
+      "GA": {
+        "city": "Atlanta", 
+        "review_count": 5586, 
+        "rating": 4.121016827783745, 
+        "reviews_by_pop": 0.012473176864110253, 
+        "restaurant_count": 28, 
+        "population": 447841
+      }
+    }, 
+    {
+      "HI": {
+        "city": "Honolulu", 
+        "review_count": 4912, 
+        "rating": 3.811685667752443, 
+        "reviews_by_pop": 0.014119649078428442, 
+        "restaurant_count": 33, 
+        "population": 347884
+      }
+    }, 
+    {
+      "ID": {
+        "city": "Boise", 
+        "review_count": 1103, 
+        "rating": 3.92701722574796, 
+        "reviews_by_pop": 0.00514850375985474, 
+        "restaurant_count": 36, 
+        "population": 214237
+      }
+    }, 
+    {
+      "IL": {
+        "city": "Chicago", 
+        "review_count": 20800, 
+        "rating": 3.9514423076923078, 
+        "reviews_by_pop": 0.007650484665559798, 
+        "restaurant_count": 39, 
+        "population": 2718782
+      }
+    }, 
+    {
+      "IN": {
+        "city": "Indianapolis", 
+        "review_count": 2335, 
+        "rating": 3.938115631691649, 
+        "reviews_by_pop": 0.0027685788238697735, 
+        "restaurant_count": 38, 
+        "population": 843393
+      }
+    }, 
+    {
+      "IA": {
+        "city": "Des Moines", 
+        "review_count": 759, 
+        "rating": 3.9696969696969697, 
+        "reviews_by_pop": 0.0036576550527685414, 
+        "restaurant_count": 22, 
+        "population": 207510
+      }
+    }, 
+    {
+      "KS": {
+        "city": "Wichita", 
+        "review_count": 560, 
+        "rating": 3.882142857142857, 
+        "reviews_by_pop": 0.0014487054781762868, 
+        "restaurant_count": 31, 
+        "population": 386552
+      }
+    }, 
+    {
+      "KY": {
+        "city": "Louisville/Jefferson County", 
+        "review_count": 1224, 
+        "rating": 3.798611111111111, 
+        "reviews_by_pop": 0.002006909408699559, 
+        "restaurant_count": 32, 
+        "population": 609893
+      }
+    }, 
+    {
+      "LA": {
+        "city": "New Orleans", 
+        "review_count": 4222, 
+        "rating": 3.8612032212221696, 
+        "reviews_by_pop": 0.011148224918474314, 
+        "restaurant_count": 35, 
+        "population": 378715
+      }
+    }, 
+    {
+      "ME": {
+        "city": "Portland", 
+        "review_count": 1092, 
+        "rating": 4.0989010989010985, 
+        "reviews_by_pop": 0.016466117796073463, 
+        "restaurant_count": 23, 
+        "population": 66318
+      }
+    }, 
+    {
+      "MD": {
+        "city": "Baltimore", 
+        "review_count": 3117, 
+        "rating": 3.9092075713827397, 
+        "reviews_by_pop": 0.0050104162648045986, 
+        "restaurant_count": 30, 
+        "population": 622104
+      }
+    }, 
+    {
+      "MA": {
+        "city": "Boston", 
+        "review_count": 6941, 
+        "rating": 3.998919464054171, 
+        "reviews_by_pop": 0.010745147577426676, 
+        "restaurant_count": 21, 
+        "population": 645966
+      }
+    }, 
+    {
+      "MI": {
+        "city": "Detroit", 
+        "review_count": 1210, 
+        "rating": 4.159917355371901, 
+        "reviews_by_pop": 0.0017569308016105684, 
+        "restaurant_count": 8, 
+        "population": 688701
+      }
+    }, 
+    {
+      "MN": {
+        "city": "Minneapolis", 
+        "review_count": 3255, 
+        "rating": 4.023195084485407, 
+        "reviews_by_pop": 0.008136076186667333, 
+        "restaurant_count": 34, 
+        "population": 400070
+      }
+    }, 
+    {
+      "MS": {
+        "city": "Jackson", 
+        "review_count": 120, 
+        "rating": 4.0125, 
+        "reviews_by_pop": 0.0006950960970354152, 
+        "restaurant_count": 9, 
+        "population": 172638
+      }
+    }, 
+    {
+      "MO": {
+        "city": "Kansas City", 
+        "review_count": 1936, 
+        "rating": 3.915547520661157, 
+        "reviews_by_pop": 0.004145548139535381, 
+        "restaurant_count": 26, 
+        "population": 467007
+      }
+    }, 
+    {
+      "MT": {
+        "city": "Billings", 
+        "review_count": 248, 
+        "rating": 3.560483870967742, 
+        "reviews_by_pop": 0.0022739984778881155, 
+        "restaurant_count": 28, 
+        "population": 109059
+      }
+    }, 
+    {
+      "NE": {
+        "city": "Omaha", 
+        "review_count": 1473, 
+        "rating": 3.7936184657162255, 
+        "reviews_by_pop": 0.003391250895009359, 
+        "restaurant_count": 32, 
+        "population": 434353
+      }
+    }, 
+    {
+      "NV": {
+        "city": "Las Vegas", 
+        "review_count": 9172, 
+        "rating": 4.082751853467074, 
+        "reviews_by_pop": 0.015198313802428549, 
+        "restaurant_count": 37, 
+        "population": 603488
+      }
+    }, 
+    {
+      "NH": {
+        "city": "Manchester", 
+        "review_count": 570, 
+        "rating": 3.680701754385965, 
+        "reviews_by_pop": 0.005164072550689449, 
+        "restaurant_count": 19, 
+        "population": 110378
+      }
+    }, 
+    {
+      "NJ": {
+        "city": "Newark", 
+        "review_count": 224, 
+        "rating": 3.8348214285714284, 
+        "reviews_by_pop": 0.0008045196766118228, 
+        "restaurant_count": 5, 
+        "population": 278427
+      }
+    }, 
+    {
+      "NM": {
+        "city": "Albuquerque", 
+        "review_count": 1670, 
+        "rating": 3.887125748502994, 
+        "reviews_by_pop": 0.003000925435089264, 
+        "restaurant_count": 37, 
+        "population": 556495
+      }
+    }, 
+    {
+      "NY": {
+        "city": "New York", 
+        "review_count": 16240, 
+        "rating": 4.032173645320197, 
+        "reviews_by_pop": 0.0019319908297055963, 
+        "restaurant_count": 22, 
+        "population": 8405837
+      }
+    }, 
+    {
+      "NC": {
+        "city": "Charlotte", 
+        "review_count": 2487, 
+        "rating": 3.8852030558906314, 
+        "reviews_by_pop": 0.0031367375407069576, 
+        "restaurant_count": 36, 
+        "population": 792862
+      }
+    }, 
+    {
+      "ND": {
+        "city": "Fargo", 
+        "review_count": 340, 
+        "rating": 3.601470588235294, 
+        "reviews_by_pop": 0.002991430431645815, 
+        "restaurant_count": 26, 
+        "population": 113658
+      }
+    }, 
+    {
+      "OH": {
+        "city": "Columbus", 
+        "review_count": 2145, 
+        "rating": 4.041958041958042, 
+        "reviews_by_pop": 0.0026077346991622424, 
+        "restaurant_count": 31, 
+        "population": 822553
+      }
+    }, 
+    {
+      "OK": {
+        "city": "Oklahoma City", 
+        "review_count": 1052, 
+        "rating": 4.065114068441065, 
+        "reviews_by_pop": 0.001722858832026177, 
+        "restaurant_count": 27, 
+        "population": 610613
+      }
+    }, 
+    {
+      "OR": {
+        "city": "Portland", 
+        "review_count": 6179, 
+        "rating": 4.0852888816960675, 
+        "reviews_by_pop": 0.010138549788663988, 
+        "restaurant_count": 39, 
+        "population": 609456
+      }
+    }, 
+    {
+      "PA": {
+        "city": "Philadelphia", 
+        "review_count": 7503, 
+        "rating": 4.129214980674397, 
+        "reviews_by_pop": 0.004830781018114624, 
+        "restaurant_count": 40, 
+        "population": 1553165
+      }
+    }, 
+    {
+      "RI": {
+        "city": "Providence", 
+        "review_count": 2295, 
+        "rating": 3.9089324618736385, 
+        "reviews_by_pop": 0.012893693045833005, 
+        "restaurant_count": 21, 
+        "population": 177994
+      }
+    }, 
+    {
+      "SC": {
+        "city": "Columbia", 
+        "review_count": 512, 
+        "rating": 3.587890625, 
+        "reviews_by_pop": 0.003839289731399691, 
+        "restaurant_count": 21, 
+        "population": 133358
+      }
+    }, 
+    {
+      "SD": {
+        "city": "Sioux Falls", 
+        "review_count": 194, 
+        "rating": 3.3608247422680413, 
+        "reviews_by_pop": 0.001178070878573684, 
+        "restaurant_count": 34, 
+        "population": 164676
+      }
+    }, 
+    {
+      "TN": {
+        "city": "Memphis", 
+        "review_count": 1217, 
+        "rating": 3.877567789646672, 
+        "reviews_by_pop": 0.0018624225265896396, 
+        "restaurant_count": 31, 
+        "population": 653450
+      }
+    }, 
+    {
+      "TX": {
+        "city": "Houston", 
+        "review_count": 5780, 
+        "rating": 3.9608996539792387, 
+        "reviews_by_pop": 0.0026321613687967744, 
+        "restaurant_count": 38, 
+        "population": 2195914
+      }
+    }, 
+    {
+      "UT": {
+        "city": "Salt Lake City", 
+        "review_count": 2288, 
+        "rating": 3.9064685314685317, 
+        "reviews_by_pop": 0.011967779056386652, 
+        "restaurant_count": 23, 
+        "population": 191180
+      }
+    }, 
+    {
+      "VT": {
+        "city": "Burlington", 
+        "review_count": 828, 
+        "rating": 4.200483091787439, 
+        "reviews_by_pop": 0.01958187494087598, 
+        "restaurant_count": 13, 
+        "population": 42284
+      }
+    }, 
+    {
+      "VA": {
+        "city": "Virginia Beach", 
+        "review_count": 1339, 
+        "rating": 3.909634055265123, 
+        "reviews_by_pop": 0.002985647042559406, 
+        "restaurant_count": 38, 
+        "population": 448479
+      }
+    }, 
+    {
+      "WA": {
+        "city": "Seattle", 
+        "review_count": 10957, 
+        "rating": 4.045541662863923, 
+        "reviews_by_pop": 0.016794782382109272, 
+        "restaurant_count": 38, 
+        "population": 652405
+      }
+    }, 
+    {
+      "WV": {
+        "city": "Charleston", 
+        "review_count": 456, 
+        "rating": 4.144736842105263, 
+        "reviews_by_pop": 0.008972668778654493, 
+        "restaurant_count": 30, 
+        "population": 50821
+      }
+    }, 
+    {
+      "WI": {
+        "city": "Milwaukee", 
+        "review_count": 1818, 
+        "rating": 3.8792629262926295, 
+        "reviews_by_pop": 0.0030342276905822112, 
+        "restaurant_count": 25, 
+        "population": 599164
+      }
+    }, 
+    {
+      "WY": {
+        "city": "Cheyenne", 
+        "review_count": 134, 
+        "rating": 3.6044776119402986, 
+        "reviews_by_pop": 0.002145785293364079, 
+        "restaurant_count": 18, 
+        "population": 62448
+      }
+    }
+  ]
+}
