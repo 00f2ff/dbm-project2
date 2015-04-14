@@ -277,3 +277,11 @@ category_filter = 'pizza'
 # save_restaurants(category_filter)
 analyze(category_filter)
 
+
+
+
+
+# write_restaurants_to_json('new york','ny','chinese')
+
+# adjusted_rating, total_review_count = get_rating_and_review_count()
+# print adjusted_rating, total_review_count
