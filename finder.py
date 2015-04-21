@@ -212,7 +212,7 @@ def save_restaurants(category_filter):
     # create dict
     cat = {category_filter: []}
     for i in xrange(len(states)):
-        # if i == 1: break # limit number of states for testing
+        if i == 1: break # limit number of states for testing
         city = cities[i]
         state = states[i]
         # find highest rated for this city and state
@@ -250,8 +250,8 @@ def analyze(category_filter):
         cat = f.read()
     cat = json.loads(cat)
     # iterate through states
-    for i in xrange(len(cat['pizza'])):
-        state = cat['pizza'][i]
+    for i in xrange(len(cat[category_filter])):
+        state = cat[category_filter][i]
         # get the value of a state
         val = state.itervalues().next()
         # get rating and review_count
@@ -273,8 +273,8 @@ def analyze(category_filter):
         f.write(cat)
 
 
-category_filter = 'pizza'
-# save_restaurants(category_filter)
+category_filter = 'chinese'
+save_restaurants(category_filter)
 analyze(category_filter)
 
 

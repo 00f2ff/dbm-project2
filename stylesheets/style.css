@@ -1,0 +1,48 @@
+.state 
+{
+	fill: black;
+	stroke:white;
+	stroke-width:1;
+	stroke-opacity:1;
+}
+
+.territory /* I don't know where these are, but it probably doesn't matter */
+{
+	opacity:0;
+	fill: black;
+	stroke: black;
+	stroke-width:1;
+	stroke-opacity:1;
+}
+
+.territoryborder
+{
+	opacity:0;
+	fill:none;
+	stroke:#A9A9A9;
+	stroke-width:2;
+}
+
+.border
+{
+	opacity:1;
+	fill:none;
+	stroke:#A9A9A9;
+	stroke-width:2;
+}
+
+.circle
+{
+   opacity:1;
+   fill: black;
+   stroke: white;
+   stroke-width:1;
+}
+
+.state:hover {
+	fill: red;
+}
+
+.circle:hover {
+	fill: red;
+}

@@ -32,6 +32,20 @@ class BaseHandler(webapp2.RequestHandler):
 		self.response.write(rv)
 
 class MainHandler(BaseHandler):
+
+	# This method finds values for relative comparison within the view
+	def find_values(self, data, category):
+		states = data[category]
+		min_rating = 0
+		max_rating = 0
+		for s in states:
+			rating = s[s.keys()[0]]['rating']
+			if rating > max_rating:
+				max_rating = rating
+			elif (rating < max_rating and min_rating == 0) or rating < min_rating:
+				min_rating = rating
+		return max_rating, min_rating
+
 	def get(self):
 		# year = "2003" # I need to loop through
 		# fp = open("data/{0}.json".format(year))
@@ -45,9 +59,13 @@ class MainHandler(BaseHandler):
 			# data = json.loads(data)
 			# get rid of unicode encoding
 			data = yaml.load(data)
-		logging.info(data)
-		context = {'data': data}
+		category = "pizza"
+		max_rating, min_rating = self.find_values(data, category)
+		# logging.info(data)
+		context = {'data': data, 'category': category, 'max_rating': max_rating, 'min_rating': min_rating}
 		self.render_response('index.html', **context)
+
+	
 	
 	def post(self):
 		context = {}

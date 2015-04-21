@@ -1,14 +1,50 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title></title>
-	<link rel="stylesheet" type="text/css" href="../stylesheets/style.css">
-</head>
-<body>
-<div id="hi"></div>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 
-<!-- <img src="../Blank_US_Map.svg"> -->
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="959" height="593">
+
+<style type="text/css">
+.state 
+{
+	fill:#E0E0E0;
+	stroke:#646464;
+	stroke-width:1;
+	stroke-opacity:1;
+}
+
+.territory
+{
+	opacity:0;
+	fill:#E0E0E0;
+	stroke:#646464;
+	stroke-width:1;
+	stroke-opacity:1;
+}
+
+.territoryborder
+{
+	opacity:0;
+	fill:none;
+	stroke:#A9A9A9;
+	stroke-width:2;
+}
+
+.border
+{
+	opacity:1;
+	fill:none;
+	stroke:#A9A9A9;
+	stroke-width:2;
+}
+
+.circle
+{
+   opacity:1;
+   fill:#E0E0E0;
+   stroke:#646464;
+   stroke-width:1;
+}
+
+</style>
 
 <g id="hi">
 	<title>Hawaii</title>
@@ -122,44 +158,3 @@
 <path class="border" d="M 211,493 V 548 L 247,593 M 0,425 H 144 L 211,493 H 297 L 350,547 V 593"/>
 <path class="territoryborder" d="M 559.77592,593 L 559.77592,515.6691 L 682.01719,515.6691 L 682.01719,593 M 632.77323,515.6691 L 632.77323,593 M 559.77592,557.52646 L 682.01719,557.52646M 597.89432,556.61302 L 597.89432,593.73613"/>
 </svg>
-
-<p>Image courtesy of Wikipedia</p>
-
-<script type="text/javascript" src="d3/d3.min.js"></script>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<script>
-var data = {{data|safe}}
-var category = Object.keys(data)[0];
-var max_rating = {{max_rating|safe}}
-var min_rating = {{min_rating|safe}}
-console.log(max_rating);
-console.log(min_rating);
-console.log(data);
-
-// Right now this code does not use D3
-for (var i = 0; i < data[category].length; i++) {
-	var s = data[category][i];
-	var state_abbr = Object.keys(s)[0];
-	// match state name to SVG ids
-	var state_id = state_abbr.toLowerCase();
-	var state_data = s[state_abbr];
-	// adjust rating to relative values for coloring
-	// minimum yellow value: rgb(100,100,0)
-	var rg_val = Math.round((state_data.rating - min_rating) / (max_rating - min_rating) * 155) + 100;
-	// color state
-	$('.'+state_id).css('fill', 'rgb('+rg_val+','+rg_val+',0)');
-	
-	/* In this: darker is worse */
-
-}
-
-// this isn't working
-$('g').on('hover', function() {
-	console.log('hi');
-	$(this).find('.border').css('fill','black');
-});
-
-
-</script>
-</body>
-</html>
