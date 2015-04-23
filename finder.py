@@ -212,7 +212,7 @@ def save_restaurants(category_filter):
     # create dict
     cat = {category_filter: []}
     for i in xrange(len(states)):
-        if i == 1: break # limit number of states for testing
+        # if i == 1: break # limit number of states for testing
         city = cities[i]
         state = states[i]
         # find highest rated for this city and state
