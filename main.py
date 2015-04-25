@@ -38,31 +38,31 @@ class MainHandler(BaseHandler):
 		states = data[category]
 		min_rating = 0
 		max_rating = 0
+		min_state = ''
+		max_state = ''
 		for s in states:
 			rating = s[s.keys()[0]]['rating']
 			if rating > max_rating:
 				max_rating = rating
+				max_state = s.keys()[0]
 			elif (rating < max_rating and min_rating == 0) or rating < min_rating:
 				min_rating = rating
-		return max_rating, min_rating
+				min_state = s.keys()[0]
+		return max_rating, min_rating, max_state, min_state
 
 	def get(self):
-		# year = "2003" # I need to loop through
-		# fp = open("data/{0}.json".format(year))
-		# response = json.load(fp)
-		# logging.info(type(response))
-		# # j_2003 = self.get_year_data('2003')
-		# # context = {'data':json.encode(response)}
-		# context = {'data':response}
-		with open('data/pizza_B.json') as f:
-			data = f.read()
-			# data = json.loads(data)
-			# get rid of unicode encoding
-			data = yaml.load(data)
-		category = "pizza"
-		max_rating, min_rating = self.find_values(data, category)
-		# logging.info(data)
-		context = {'data': data, 'category': category, 'max_rating': max_rating, 'min_rating': min_rating}
+		context = {'data': []}
+		category_list = ['pizza', 'mexican', 'chinese', 'bars']
+		# Iterate through JSON files
+		for category in category_list:
+			with open('data/{0}_B.json'.format(category)) as f:
+				data = f.read()
+				# get rid of unicode encoding
+				data = yaml.load(data)
+			max_rating, min_rating, max_state, min_state = self.find_values(data, category)
+			val = {'data': data, 'max_rating': max_rating, 'min_rating': min_rating, 'max_state': max_state, 'min_state': min_state}
+			# add this particular dataset to context
+			context['data'].append(val)
 		self.render_response('index.html', **context)
 
 	

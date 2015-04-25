@@ -46,3 +46,5 @@ File save data structure:
 		"restaurants": [ ... ]
 	},...
 }
+
+Make this look nice later
