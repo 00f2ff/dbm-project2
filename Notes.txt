@@ -48,3 +48,6 @@ File save data structure:
 }
 
 Make this look nice later
+
+Team feedback:
+ - Add state names to each state --> going to be too time-intensive (and may screw up SVG)

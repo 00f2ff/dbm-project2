@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
+	<title>Which State Has the Best Pizza?</title>
+	<link href='http://fonts.googleapis.com/css?family=Roboto:400' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" type="text/css" href="../stylesheets/style.css">
 </head>
 <body>
+<div id="page">
 <h1>Which State Has the Best <span id="h1-category">Pizza</span>?</h1>
 <!-- <img src="../Blank_US_Map.svg"> -->
+<div id="map-wrapper">
 <div id="map">
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="959" height="593">
 
@@ -185,15 +188,21 @@
 	<p>Image courtesy of Wikipedia</p>
 	<div id="gradient-wrapper">
 		<div id="low-end">4.79</div>
-		<div id="gradient" class="gradient-pizza"></div>
+		<div id="gradient">
+			<div class="bucket-0"></div>
+			<div class="bucket-1"></div>
+			<div class="bucket-2"></div>
+			<div class="bucket-3"></div>
+			<div class="bucket-4"></div>
+		</div>
 		<div id="high-end">5.00</div>
 	</div>
 </div>
 
 </div>
 <div id="information">
-	<div id="tooltip">
-		<div id="city"></div>
+	<div id="tooltip" class="table-wrapper">
+		<div id="city" class="table-header">&nbsp;</div>
 		<table>
 			<tr>
 				<td><strong>Average Rating</strong></td>
@@ -221,8 +230,8 @@
 		<p>State With Highest Rating: <span class="max_state"></span></p>
 		<p>State With Lowest Rating: <span class="min_state"></span></p>
 	</div>
-	<div id="options">
-		<div id="categories">Categories</div>
+	<div id="options" class="table-wrapper">
+		<div id="categories" class="table-header">Categories</div>
 		<table>
 			<tr>
 				<td><strong>Pizza</strong></td>
@@ -242,136 +251,94 @@
 			</tr>
 		</table>
 	</div>
-
+</div>
 </div>
 
+<section id="boxplot">
+	<div id="boxplot-wrapper">
+		<div id="boxplot-options">
+			<div>Pick a state from the dropdown to see a boxplot comparison of different cuisines.</div>
+			<form>
+				<select id="dropdown">
+				<option value='AL'>Alabama</option>
+				<option value='AK'>Alaska</option>
+				<option value='AZ'>Arizona</option>
+				<option value='AR'>Arkansas</option>
+				<option value='CA'>California</option>
+				 
+				<option value='CO'>Colorado</option>
+				<option value='CT'>Connecticut</option>
+				<option value='DE'>Delaware</option>
+				<option value='DC'>District of Columbia</option>
+				<option value='FL'>Florida</option>
+				 
+				<option value='GA'>Georgia</option>
+				<option value='HI'>Hawaii</option>
+				<option value='ID'>Idaho</option>
+				<option value='IL'>Illinois</option>
+				<option value='IN'>Indiana</option>
+				 
+				<option value='IA'>Iowa</option>
+				<option value='KS'>Kansas</option>
+				<option value='KY'>Kentucky</option>
+				<option value='LA'>Louisiana</option>
+				<option value='ME'>Maine</option>
+				 
+				<option value='MD'>Maryland</option>
+				<option value='MA'>Massachusetts</option>
+				<option value='MI'>Michigan</option>
+				<option value='MN'>Minnesota</option>
+				<option value='MS'>Mississippi</option>
+				 
+				<option value='MO'>Missouri</option>
+				<option value='MT'>Montana</option>
+				<option value='NE'>Nebraska</option>
+				<option value='NV'>Nevada</option>
+				<option value='NH'>New Hampshire</option>
+				 
+				<option value='NJ'>New Jersey</option>
+				<option value='NM'>New Mexico</option>
+				<option value='NY'>New York</option>
+				<option value='NC'>North Carolina</option>
+				<option value='ND'>North Dakota</option>
+				 
+				<option value='OH'>Ohio</option>
+				<option value='OK'>Oklahoma</option>
+				<option value='OR'>Oregon</option>
+				<option value='PA'>Pennsylvania</option>
+				<option value='RI'>Rhode Island</option>
+				 
+				<option value='SC'>South Carolina</option>
+				<option value='SD'>South Dakota</option>
+				<option value='TN'>Tennessee</option>
+				<option value='TX'>Texas</option>
+				<option value='UT'>Utah</option>
+				 
+				<option value='VT'>Vermont</option>
+				<option value='VA'>Virginia</option>
+				<option value='WA'>Washington</option>
+				<option value='WV'>West Virginia</option>
+				<option value='WI'>Wisconsin</option>
+				 
+				<option value='WY'>Wyoming</option>
+				</select>
+			</form>
+		</div>
+			
+	</div>
+</section>
+</div>
 
 <style>
 </style>
 
 <script type="text/javascript" src="d3/d3.min.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<script>
-var data = {{data|safe}};
-function changeDataset(index) {
-	// reset colors
-	// $('g').css('fill', 'black');
-	var category = Object.keys(data[index].data)[0],
-		max_rating = data[index].max_rating,
-		min_rating = data[index].min_rating,
-		max_state = data[index].max_state.toUpperCase(),
-		min_state = data[index].min_state.toUpperCase();
-	// console.log(data[index], states);
-	console.log(category, min_rating, max_rating, min_state, max_state);
+<script>var data = {{data|safe}};</script>
+<script src="../js/map.js"></script>
+<script src="../js/treemap.js"></script>
+<script src="../js/box.js"></script>
+<script src="../js/boxplot.js"></script>
 
-	// specific naming options for better phrasing
-	var category_string;
-	if (category === 'pizza') {
-		category_string = 'Pizza';
-	} else if (category === 'mexican') {
-		category_string = 'Mexican Food';
-	} else if (category === 'chinese') {
-		category_string = 'Chinese Food';
-	} else if (category === 'bars') {
-		category_string = 'Bars';
-	}
-	$('#h1-category').text(category_string);
-	// assign gradient class
-	$('#gradient').removeClass().addClass('gradient-'+category);
-	// add low and high values
-	var lr = min_rating.toFixed(2),
-		hr = max_rating.toFixed(2);
-	$('#low-end').text(lr);
-	$('#high-end').text(hr);
-	// add highest / lowest states
-	$('.max_state').text(max_state);
-	$('.min_state').text(min_state);
-	// Right now this code does not use D3
-	for (var i = 0; i < data[index].data[category].length; i++) {
-		var s = data[index].data[category][i],
-			state_abbr = Object.keys(s)[0],
-			// match state name to SVG ids
-			state_id = state_abbr.toLowerCase(),
-			state_data = s[state_abbr],
-			// adjust rating to relative values for coloring
-			rg_val = Math.round((state_data.rating - min_rating) / (max_rating - min_rating) * 255),
-			rgb_string;
-		// color state
-		if (category === 'pizza') {
-			// Yellow to Red
-			rgb_string = 'rgb(255,'+(255-rg_val)+',0)';
-		}else if (category === 'mexican') {
-			// Cyan to Green
-			rgb_string = 'rgb(0,255,'+(255-rg_val)+')';
-		}else if (category === 'chinese') {
-			// Magenta to Red
-			rgb_string = 'rgb(255,0,'+(255-rg_val)+')';
-		}else if (category === 'bars') {
-			// Cyan to Blue
-			rgb_string = 'rgb(0,'+(255-rg_val)+',255)';
-		}
-		// add color to path
-		$('.'+state_id).css('fill', rgb_string);
-		// assign data for this state (g)
-		// console.log(state_data);
-		// exception for mi
-		if (state_id === 'mi') {
-			$('.'+state_id).data('info', state_data);
-		} else {
-			$('.'+state_id).parent().data('info', state_data);
-		}
-		
-		/* In this: darker is worse */
-		/* figure out how to make it about lightness and not pure color saturation */
-		/* or range between two colors (like red to yellow; yellow to blue, red to blue, etc) */
-	}
-}
-
-// Radio button click handler
-$('input').click(function() {
-	// uncheck all radio buttons then check this one
-	$('input').prop('checked',false);
-	$(this).prop('checked',true);
-	var index = parseInt($(this).val(),10);
-	// change dataset
-	changeDataset(index);
-});
-
-// initial load
-$('input[name="pizza"]').prop('checked',true);
-changeDataset(0);
-
-function changeStrokeColor(element, color) {
-	console.log(element.attr('id'));
-	// exception to labeling rule
-	if (element.attr('id') === 'mi') {
-		element.find('path').css('stroke',color);
-	} else if (element.attr('id') === 'dc') {
-		element.find('circle').css('stroke',color);
-	}
-	element.find('.state').css('stroke',color);
-}
-
-
-
-$('svg g').on('mouseover', function (e) { // hold off for now since each state doesn't have it's own border
-	// changeStrokeColor($(this),'black');
-	// console.log($(this).data('info'));
-	// $('#tooltip').css({'opacity':'1','top':e.pageY,'left':e.pageX});
-	var info = $(this).data('info');
-	// console.log(info);
-	$('#tooltip #city').text(info.city+', '+$(this).attr('id').toUpperCase());
-	$('#tooltip #population').text(info.population);
-	$('#tooltip #rating').text(info.rating.toFixed(2));
-	$('#tooltip #restaurant_count').text(info.restaurant_count);
-	$('#tooltip #review_count').text(info.review_count);
-	$('#tooltip #reviews_by_pop').text(info.reviews_by_pop.toFixed(4));
-}).on('mouseleave', function() {
-	// changeStrokeColor($(this),'white');
-	// $('#tooltip').css({'opacity':'0'});
-});
-
-
-</script>
 </body>
 </html>

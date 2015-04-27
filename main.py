@@ -50,6 +50,16 @@ class MainHandler(BaseHandler):
 				min_state = s.keys()[0]
 		return max_rating, min_rating, max_state, min_state
 
+	def find_adjusted_reviews(self, data, category):
+		states = data[category]
+		total_adjusted_reviews = 0
+		for s in states:
+			review_count = s[s.keys()[0]]['review_count']
+			restaurant_count = s[s.keys()[0]]['restaurant_count']
+			adjusted_reviews = review_count / restaurant_count
+			total_adjusted_reviews += adjusted_reviews
+		return total_adjusted_reviews
+
 	def get(self):
 		context = {'data': []}
 		category_list = ['pizza', 'mexican', 'chinese', 'bars']
@@ -60,7 +70,8 @@ class MainHandler(BaseHandler):
 				# get rid of unicode encoding
 				data = yaml.load(data)
 			max_rating, min_rating, max_state, min_state = self.find_values(data, category)
-			val = {'data': data, 'max_rating': max_rating, 'min_rating': min_rating, 'max_state': max_state, 'min_state': min_state}
+			total_adjusted_reviews = self.find_adjusted_reviews(data, category)
+			val = {'data': data, 'max_rating': max_rating, 'min_rating': min_rating, 'max_state': max_state, 'min_state': min_state, 'total_adjusted_reviews': total_adjusted_reviews}
 			# add this particular dataset to context
 			context['data'].append(val)
 		self.render_response('index.html', **context)
