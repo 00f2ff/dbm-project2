@@ -2,11 +2,17 @@ $(function() {
   var margin = {top: 40, right: 10, bottom: 10, left: 10},
       width = 1260 - margin.left - margin.right,
       height = 800 - margin.top - margin.bottom;
-  var color = d3.scale.category20c();
+
+  // var color = d3.scale.category10();
+  var color = d3.scale.ordinal()
+    .domain(["pizza", "mexican", "chinese", "bars", "bbq", "southern", "steak"])
+    .range(["#2196F3", "#4CAF50", "#009688", "#607D8B", "#E91E63", "#9C27B0", "#795548"]);
+
   var treemap = d3.layout.treemap()
       .size([width, height])
       .sticky(true)
       .value(function(d) { return d.size; });
+
   var div = d3.select("body").append("div")
     .classed('treemap-wrapper', true)
       .style("position", "relative")
@@ -14,6 +20,7 @@ $(function() {
       .style("height", (height + margin.top + margin.bottom) + "px")
       .style("left", margin.left + "px")
       .style("top", margin.top + "px");
+
   d3.json("/data/tree.json", function(error, root) {
     var node = div.datum(root).selectAll(".node")
         .data(treemap.nodes)

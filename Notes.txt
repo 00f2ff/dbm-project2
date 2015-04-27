@@ -51,3 +51,11 @@ Make this look nice later
 
 Team feedback:
  - Add state names to each state --> going to be too time-intensive (and may screw up SVG)
+
+
+1. Follow http://bl.ocks.org/tgk/6044254 to make tooltip for treemap
+2. Figure out how to calculate percentage in treemap and add to tooltip
+3. Figure out how to integrate same kind of tooltip with map (move info off of right)
+4. On success of (3), change radio button nav to flexbox up top; reorganize where best and worst are
+5. Add other 3 datasets to flexbox nav
+6. Add project description and other statistical analysis explanations. It should read like a news article. 

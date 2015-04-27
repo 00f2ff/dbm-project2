@@ -273,9 +273,64 @@ def analyze(category_filter):
         f.write(cat)
 
 
-category_filter = 'chinese'
-save_restaurants(category_filter)
-analyze(category_filter)
+# category_filter = 'chinese'
+# save_restaurants(category_filter)
+# analyze(category_filter)
+
+# Generate a dictionary comprised of data structures D3 code uses for boxplots
+"""
+Format:
+{
+    'al': [
+            ['pizza',
+             [ all pizza ratings for al ]
+            ],
+            ['mexican',
+             [ all mexican ratings for al ]
+            ],
+            ['chinese',
+             [ all chinese ratings for al ]
+            ], ...
+          ],
+    'ak': [],
+
+}
+"""
+def generate_boxplot_data():
+    category_list = ['pizza', 'mexican', 'chinese', 'bars']
+    master = {}
+    for c in xrange(len(category_list)):
+        
+        with open("data/{0}_A.json".format(category_list[c])) as f:
+            cat = f.read()
+        cat = json.loads(cat)
+        # iterate through states
+        for i in xrange(len(cat[category_list[c]])):
+            state = cat[category_list[c]][i]
+            # get the key of a state
+            key = state.keys()[0] # don't need to downcase because boxplot doesn't
+            val = state[key]
+            # generate key-value pairs on first pass
+            if c == 0:
+                # state -> key, val -> empty nested array
+                master[key] = [[0,[]] for category in category_list]
+            # access value in index of category
+            values = master[key][c]
+            # set first element to category name
+            values[0] = category_list[c]
+            # set second element to list of all ratings
+            ratings = []
+            for r in val["restaurants"]:
+                ratings.append(r["rating"])
+            # sort the ratings
+            values[1] = sorted(ratings)
+
+    return master
+
+a = generate_boxplot_data()
+with open("data/boxplot.json", "w") as f:
+    f.write(str(json.dumps(a, indent=2)))
+
 
 
 

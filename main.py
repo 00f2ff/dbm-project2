@@ -61,7 +61,7 @@ class MainHandler(BaseHandler):
 		return total_adjusted_reviews
 
 	def get(self):
-		context = {'data': []}
+		context = {'data': [], 'stats': {}}
 		category_list = ['pizza', 'mexican', 'chinese', 'bars']
 		# Iterate through JSON files
 		for category in category_list:
@@ -74,6 +74,11 @@ class MainHandler(BaseHandler):
 			val = {'data': data, 'max_rating': max_rating, 'min_rating': min_rating, 'max_state': max_state, 'min_state': min_state, 'total_adjusted_reviews': total_adjusted_reviews}
 			# add this particular dataset to context
 			context['data'].append(val)
+		# add boxplot data to context *** UNEQUAL NUMBER OF RATINGS BREAKS IT
+		# with open('data/boxplot.json') as f:
+		# 	stats = f.read()
+		# 	stats = yaml.load(stats)
+		# context['stats'] = stats
 		self.render_response('index.html', **context)
 
 	
