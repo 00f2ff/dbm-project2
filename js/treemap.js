@@ -22,23 +22,37 @@ $(function() {
       .style("top", margin.top + "px");
 
   d3.json("/data/tree.json", function(error, root) {
+    var mousemove = function(d) {
+      var xPosition = d3.event.pageX + 5;
+      var yPosition = d3.event.pageY + 5;
+
+      d3.select("#tooltip.tree")
+        .style("left", xPosition + "px")
+        .style("top", yPosition + "px");
+      d3.select("#tooltip.tree #header")
+        .text(d.category);
+      d3.select("#tooltip.tree #citystate")
+        .text(d.city + ', ' + d.name);
+      d3.select("#tooltip.tree #percent")
+        .text(d.percent);
+      d3.select("#tooltip.tree").classed("hidden", false);
+    };
+
+    var mouseout = function() {
+      d3.select("#tooltip.tree").classed("hidden", true);
+    };
+
+    console.log(root);
     var node = div.datum(root).selectAll(".node")
         .data(treemap.nodes)
       .enter().append("div")
         .attr("class", "node")
         .call(position)
         .style("background", function(d) { return d.children ? color(d.name) : null; })
-        .text(function(d) { return d.children ? null : d.name; });
-   // d3.selectAll("input").on("change", function change() {
-   //   var value = this.value === "count"
-   //       ? function() { return 1; }
-   //       : function(d) { return d.size; };
-     // node
-     //     .data(treemap.value(value).nodes)
-     //   .transition()
-     //     .duration(1500)
-     //     .call(position);
-    //}); 
+        .text(function(d) { return d.children ? null : d.name; })
+        .on("mousemove", mousemove)
+        .on("mouseout", mouseout);
+
   });
   function position() {
     this.style("left", function(d) { return d.x + "px"; })
@@ -46,4 +60,7 @@ $(function() {
         .style("width", function(d) { return Math.max(0, d.dx - 1) + "px"; })
         .style("height", function(d) { return Math.max(0, d.dy - 1) + "px"; });
   }
+
+
+
 })

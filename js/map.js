@@ -20,6 +20,12 @@ $(function() {
 			category_string = 'Chinese Food';
 		} else if (category === 'bars') {
 			category_string = 'Bars';
+		} else if (category === 'bbq') {
+			category_string = 'BBQ';
+		} else if (category === 'southern') {
+			category_string = 'Southern Food';
+		} else if (category === 'steak') {
+			category_string = 'Steak';
 		}
 		$('#h1-category').text(category_string);
 		// add low and high values
@@ -84,49 +90,43 @@ $(function() {
 		}
 	}
 
-	// Radio button click handler
-	$('input').click(function() {
-		// uncheck all radio buttons then check this one
-		$('input').prop('checked',false);
-		$(this).prop('checked',true);
-		var index = parseInt($(this).val(),10);
-		// change dataset
-		changeDataset(index);
-	});
 
-	// function changeStrokeColor(element, color) {
-	// 	console.log(element.attr('id'));
-	// 	// exception to labeling rule
-	// 	if (element.attr('id') === 'mi') {
-	// 		element.find('path').css('stroke',color);
-	// 	} else if (element.attr('id') === 'dc') {
-	// 		element.find('circle').css('stroke',color);
-	// 	}
-	// 	element.find('.state').css('stroke',color);
-	// }
+	$('svg g').on('mousemove', function (e) {
+		var xPosition = e.pageX + 5;
+      	var yPosition = e.pageY + 5;
 
-
-	$('svg g').on('mouseover', function (e) {
+      	$('#tooltip.map').css({'left': xPosition + "px", 'top': yPosition + "px"});
 
 		var info = $(this).data('info');
 		// console.log(info);
-		$('#tooltip #city').text(info.city+', '+$(this).attr('id').toUpperCase());
-		$('#tooltip #population').text(info.population);
-		$('#tooltip #rating').text(info.rating.toFixed(2));
-		$('#tooltip #restaurant_count').text(info.restaurant_count);
-		$('#tooltip #review_count').text(info.review_count);
-		$('#tooltip #reviews_by_pop').text((info.reviews_by_pop*100).toFixed(2)+'%');
+		$('#tooltip.map #header').text(info.city+', '+$(this).attr('id').toUpperCase());
+		$('#tooltip.map #population').text(info.population);
+		$('#tooltip.map #rating').text(info.rating.toFixed(2));
+		$('#tooltip.map #restaurant_count').text(info.restaurant_count);
+		$('#tooltip.map #review_count').text(info.review_count);
+		$('#tooltip.map #reviews_by_pop').text((info.reviews_by_pop*100).toFixed(2)+'%');
 
 		// make all other states more transparent
 		$('svg g').css('opacity',0.6);
 		$(this).css('opacity',1);
-	}).on('mouseleave', function() {
+
+		if ($('#tooltip.map').hasClass('hidden')) { $('#tooltip.map').removeClass('hidden'); }
+	}).on('mouseout', function() {
 		$('svg g').css('opacity',1);
+		$("#tooltip.map").addClass('hidden');
 	});
+
+	// dataset click handler
+	$('.map-input').click(function() {
+		// reset all elements and set this one to selected
+		$('.map-input').removeClass('selected');
+		$(this).addClass('selected');
+		// change dataset
+		changeDataset(parseInt($(this).attr('data-index'), 10));
+	})
 
 
 	// initial load
-	$('input[name="pizza"]').prop('checked',true);
 	changeDataset(0);
 
 })

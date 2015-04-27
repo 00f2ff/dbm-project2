@@ -10,6 +10,20 @@
 <h1>Which State Has the Best <span id="h1-category">Pizza</span>?</h1>
 <!-- <img src="../Blank_US_Map.svg"> -->
 <div id="map-wrapper">
+	<div id="map-nav">
+	  <!-- JS: .click will analyze the data-index of $(this), split it on , and turn it into numbers, and call graphing function accordingly. It could also take $(this).html() for the chart title -->
+	  <div class="map-input selected" data-index="0">Pizza</div>
+	  <div class="map-input" data-index="1">Mexican</div>
+	  <div class="map-input" data-index="2">Chinese</div> <!-- blue red yellow green -->
+	  <div class="map-input" data-index="3">Bars</div>
+	  <div class="map-input" data-index="4">BBQ</div>
+	  <div class="map-input" data-index="5">Southern</div>
+	  <div class="map-input" data-index="6">Steak</div>
+	</div>
+	<div id="comparison">
+		<p>State With Highest Rating: <span class="max_state"></span></p>
+		<p>State With Lowest Rating: <span class="min_state"></span></p>
+	</div>
 <div id="map">
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="959" height="593">
 
@@ -184,6 +198,31 @@
 <path class="border" d="M 211,493 V 548 L 247,593 M 0,425 H 144 L 211,493 H 297 L 350,547 V 593"/>
 <path class="territoryborder" d="M 559.77592,593 L 559.77592,515.6691 L 682.01719,515.6691 L 682.01719,593 M 632.77323,515.6691 L 632.77323,593 M 559.77592,557.52646 L 682.01719,557.52646M 597.89432,556.61302 L 597.89432,593.73613"/>
 </svg>
+<div id="tooltip" class="map hidden">
+	<p><strong id="header"></strong></p>
+	<table>
+		<tr>
+			<td><strong>Average Rating</strong></td>
+			<td><span id="rating"></span></td>
+		</tr>
+		<tr>
+			<td><strong># of Restaurants</strong></td>
+			<td><span id="restaurant_count"></span></td>
+		</tr>
+		<tr>
+			<td><strong># of Reviews</strong></td>
+			<td><span id="review_count"></span></td>
+		</tr>
+		<tr>
+			<td><strong>Population</strong></td>
+			<td><span id="population"></span></td>
+		</tr>
+		<!-- <tr> this might be confusing to explain / isn't worded well
+			<td><strong>Reviews by Population</strong></td>
+			<td><span id="reviews_by_pop"></span></td>
+		</tr> -->
+	</table>
+</div>
 <div id="bottom-content">
 	<p>Image courtesy of Wikipedia</p>
 	<div id="gradient-wrapper">
@@ -200,133 +239,18 @@
 </div>
 
 </div>
-<div id="information">
-	<div id="tooltip" class="table-wrapper">
-		<div id="city" class="table-header">&nbsp;</div>
-		<table>
-			<tr>
-				<td><strong>Average Rating</strong></td>
-				<td><span id="rating"></span></td>
-			</tr>
-			<tr>
-				<td><strong># of Restaurants</strong></td>
-				<td><span id="restaurant_count"></span></td>
-			</tr>
-			<tr>
-				<td><strong>Population</strong></td>
-				<td><span id="population"></span></td>
-			</tr>
-			<tr>
-				<td><strong># of Reviews</strong></td>
-				<td><span id="review_count"></span></td>
-			</tr>
-			<tr>
-				<td><strong>Reviews by Population</strong></td>
-				<td><span id="reviews_by_pop"></span></td>
-			</tr>
-		</table>
-	</div>
-	<div id="comparison">
-		<p>State With Highest Rating: <span class="max_state"></span></p>
-		<p>State With Lowest Rating: <span class="min_state"></span></p>
-	</div>
-	<div id="options" class="table-wrapper">
-		<div id="categories" class="table-header">Categories</div>
-		<table>
-			<tr>
-				<td><strong>Pizza</strong></td>
-				<td><input type="radio" name="pizza" value="0" /></td>
-			</tr>
-			<tr>
-				<td><strong>Mexican</strong></td>
-				<td><input type="radio" name="mexican" value="1" /></td>
-			</tr>
-			<tr>
-				<td><strong>Chinese</strong></td>
-				<td><input type="radio" name="chinese" value="2" /></td>
-			</tr>
-			<tr>
-				<td><strong>Bars</strong></td>
-				<td><input type="radio" name="bars" value="3" /></td>
-			</tr>
-		</table>
-	</div>
-</div>
+
 </div>
 
 <section id="boxplot">
 	<div id="boxplot-wrapper">
-		<!-- <div id="boxplot-options">
-			<div>Pick a state from the dropdown to see a boxplot comparison of different cuisines.</div>
-			<form>
-				<select id="dropdown">
-				<option value='AL'>Alabama</option>
-				<option value='AK'>Alaska</option>
-				<option value='AZ'>Arizona</option>
-				<option value='AR'>Arkansas</option>
-				<option value='CA'>California</option>
-				 
-				<option value='CO'>Colorado</option>
-				<option value='CT'>Connecticut</option>
-				<option value='DE'>Delaware</option>
-				<option value='DC'>District of Columbia</option>
-				<option value='FL'>Florida</option>
-				 
-				<option value='GA'>Georgia</option>
-				<option value='HI'>Hawaii</option>
-				<option value='ID'>Idaho</option>
-				<option value='IL'>Illinois</option>
-				<option value='IN'>Indiana</option>
-				 
-				<option value='IA'>Iowa</option>
-				<option value='KS'>Kansas</option>
-				<option value='KY'>Kentucky</option>
-				<option value='LA'>Louisiana</option>
-				<option value='ME'>Maine</option>
-				 
-				<option value='MD'>Maryland</option>
-				<option value='MA'>Massachusetts</option>
-				<option value='MI'>Michigan</option>
-				<option value='MN'>Minnesota</option>
-				<option value='MS'>Mississippi</option>
-				 
-				<option value='MO'>Missouri</option>
-				<option value='MT'>Montana</option>
-				<option value='NE'>Nebraska</option>
-				<option value='NV'>Nevada</option>
-				<option value='NH'>New Hampshire</option>
-				 
-				<option value='NJ'>New Jersey</option>
-				<option value='NM'>New Mexico</option>
-				<option value='NY'>New York</option>
-				<option value='NC'>North Carolina</option>
-				<option value='ND'>North Dakota</option>
-				 
-				<option value='OH'>Ohio</option>
-				<option value='OK'>Oklahoma</option>
-				<option value='OR'>Oregon</option>
-				<option value='PA'>Pennsylvania</option>
-				<option value='RI'>Rhode Island</option>
-				 
-				<option value='SC'>South Carolina</option>
-				<option value='SD'>South Dakota</option>
-				<option value='TN'>Tennessee</option>
-				<option value='TX'>Texas</option>
-				<option value='UT'>Utah</option>
-				 
-				<option value='VT'>Vermont</option>
-				<option value='VA'>Virginia</option>
-				<option value='WA'>Washington</option>
-				<option value='WV'>West Virginia</option>
-				<option value='WI'>Wisconsin</option>
-				 
-				<option value='WY'>Wyoming</option>
-				</select>
-			</form>
-		</div> -->
-			
 	</div>
 </section>
+</div>
+<div id="tooltip" class="tree hidden">
+  <p><strong id="header"></strong></p>
+  <p><span id="citystate"></span></p>
+  <p>Share of reviews: <span id="percent"></span></p>
 </div>
 
 <style>
@@ -336,12 +260,11 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script>
 var data = {{data|safe}};
-var stats = {{stats|safe}};
 </script>
 <script src="../js/map.js"></script>
 <script src="../js/treemap.js"></script>
-<!-- <script src="../js/box.js"></script> -->
-<!-- <script src="../js/boxplot.js"></script> --> <!-- add these back in later; should just be static and cover all categories; whole country -->
+<script src="../js/box.js"></script>
+<script src="../js/boxplot.js"></script>
 
 </body>
 </html>

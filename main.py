@@ -42,6 +42,7 @@ class MainHandler(BaseHandler):
 		max_state = ''
 		for s in states:
 			rating = s[s.keys()[0]]['rating']
+			if type(rating) == 'list': rating = 0# hack because some states don't have southern restaurants
 			if rating > max_rating:
 				max_rating = rating
 				max_state = s.keys()[0]
@@ -56,13 +57,14 @@ class MainHandler(BaseHandler):
 		for s in states:
 			review_count = s[s.keys()[0]]['review_count']
 			restaurant_count = s[s.keys()[0]]['restaurant_count']
-			adjusted_reviews = review_count / restaurant_count
-			total_adjusted_reviews += adjusted_reviews
+			if restaurant_count > 0:
+				adjusted_reviews = review_count / restaurant_count
+				total_adjusted_reviews += adjusted_reviews
 		return total_adjusted_reviews
 
 	def get(self):
 		context = {'data': [], 'stats': {}}
-		category_list = ['pizza', 'mexican', 'chinese', 'bars']
+		category_list = ['pizza', 'mexican', 'chinese', 'bars', 'bbq', 'southern', 'steak']
 		# Iterate through JSON files
 		for category in category_list:
 			with open('data/{0}_B.json'.format(category)) as f:
