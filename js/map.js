@@ -78,8 +78,14 @@ $(function() {
 			// Just use a single color gradient so people can analyze maps more easily
 			// Yellow to Red
 			rgb_string = 'rgb(255,'+(255-color_val)+',0)';
-			// add color to path
-			$('.'+state_id).css('fill', rgb_string);
+			// check for 0 rating places (these would have a negative subtraction)
+			if (state_data.rating == 0) {
+				$('.'+state_id).css('fill', '#B6B6B6');
+			} else {
+				// add color to path
+				$('.'+state_id).css('fill', rgb_string);
+			}
+			
 			// assign data for this state (g)
 			// exception for mi
 			if (state_id === 'mi') {
@@ -107,7 +113,7 @@ $(function() {
 		$('#tooltip.map #reviews_by_pop').text((info.reviews_by_pop*100).toFixed(2)+'%');
 
 		// make all other states more transparent
-		$('svg g').css('opacity',0.6);
+		$('#map svg g').css('opacity',0.6);
 		$(this).css('opacity',1);
 
 		if ($('#tooltip.map').hasClass('hidden')) { $('#tooltip.map').removeClass('hidden'); }

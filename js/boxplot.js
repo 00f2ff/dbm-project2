@@ -1,7 +1,7 @@
 $(function() {
 	var labels = true; // show the text labels beside individual boxplots?
 var margin = {top: 30, right: 50, bottom: 70, left: 50};
-var  width = 800 - margin.left - margin.right;
+var  width = 1100 - margin.left - margin.right;
 var height = 750 - margin.top - margin.bottom;
 	
 var min = Infinity,
@@ -71,7 +71,7 @@ d3.csv("/data/wisker.csv", function(error, csv) {
 		.height(height)	
 		.domain([min, max])
 		.showLabels(labels);
-	var svg = d3.select("body").append("svg")
+	var svg = d3.select("#boxplot-wrapper").append("svg")
 		.attr("width", width + margin.left + margin.right)
 		.attr("height", height + margin.top + margin.bottom)
 		.attr("class", "box")    
@@ -102,38 +102,60 @@ d3.csv("/data/wisker.csv", function(error, csv) {
 	
 	      
 	// add a title
-	svg.append("text")
-        .attr("x", (width / 2))             
-        .attr("y", 0 + (margin.top / 2))
-        .attr("text-anchor", "middle")  
-        .style("font-size", "18px") 
-        //.style("text-decoration", "underline")  
-        .text("The Best Cuisine Natiowide Ratings");
- 
-	 // draw y axis
-	svg.append("g")
-        .attr("class", "y axis")
-        .call(yAxis)
-		.append("text") // and text1
-		  .attr("transform", "rotate(-90)")
-		  .attr("y", 6)
-		  .attr("dy", ".71em")
-		  .style("text-anchor", "end")
-		  .style("font-size", "16px") 
-		  .text("Ratings");		
-	
-	// draw x axis	
-	svg.append("g")
-      .attr("class", "x axis")
-      .attr("transform", "translate(0," + (height  + margin.top + 10) + ")")
-      .call(xAxis)
-	  .append("text")             // text label for the x axis
-        .attr("x", (width / 2) )
-        .attr("y",  18 )
-		.attr("dy", ".71em")
-        .style("text-anchor", "middle")
-		.style("font-size", "16px") 
-        .text("cuisine"); 
+			svg.append("text")
+		        .attr("x", (width / 2))             
+		        .attr("y", 0 + (margin.top / 2))
+		        .attr("text-anchor", "middle")  
+		        .style("font-size", "18px") 
+		        //.style("text-decoration", "underline")  
+		        .text("Nationwide Cuisine Ratings");
+
+		    // y-axis title
+			svg.append("text")
+			    .attr("y", 0 - margin.left) // x and y switched due to rotation
+			    .attr("x", 0 - (height / 2))
+			    .attr("dy", "1em") 
+			    .attr("transform", "rotate(-90)")
+			    .style("text-anchor", "middle")
+			    .style("font-size", "16px") 
+			    .style("font-weight", "bold")
+			    .text("Rating");
+
+			// x-axis title
+			svg.append("text")
+			    .attr("class", "xlabel")
+			    .attr("text-anchor", "middle")
+			    .style("font-size", "16px") 
+			    .style("font-weight", "bold")
+			    .attr("x", width / 2)
+			    .attr("y", height + margin.bottom/1.9) // prevents cutoff
+			    .attr("dy", "3em") 
+			    .text("Cuisine");
+		 
+			// draw y axis
+			svg.append("g")
+		        .attr("class", "y axis")
+		        .call(yAxis)
+				.append("text") // and text1
+				  .attr("transform", "rotate(-90)")
+				  .attr("y", 6)
+				  .attr("dy", ".71em")
+				  .style("text-anchor", "end")
+				  .style("font-size", "16px") 
+				  // .text("Ratings");		
+			
+			// draw x axis	
+			svg.append("g")
+		      .attr("class", "x axis")
+		      .attr("transform", "translate(0," + (height  + margin.top + 10) + ")")
+		      .call(xAxis)
+			  .append("text")             // text label for the x axis
+		        .attr("x", (width / 2) )
+		        .attr("y",  10 )
+				.attr("dy", ".71em")
+		        .style("text-anchor", "middle")
+				.style("font-size", "16px") 
+		        // .text("cuisine"); 
 });
 // Returns a function to compute the interquartile range.
 function iqr(k) {

@@ -42,13 +42,16 @@ class MainHandler(BaseHandler):
 		max_state = ''
 		for s in states:
 			rating = s[s.keys()[0]]['rating']
-			if type(rating) == 'list': rating = 0# hack because some states don't have southern restaurants
+			if s[s.keys()[0]]["review_count"] == 0: 
+				rating = 0 # hack because some states don't have southern restaurants
+				s[s.keys()[0]]['rating'] = rating
 			if rating > max_rating:
 				max_rating = rating
 				max_state = s.keys()[0]
 			elif (rating < max_rating and min_rating == 0) or rating < min_rating:
 				min_rating = rating
 				min_state = s.keys()[0]
+		logging.info(category + " " + str(max_rating) + " " + str(min_rating))
 		return max_rating, min_rating, max_state, min_state
 
 	def find_adjusted_reviews(self, data, category):
