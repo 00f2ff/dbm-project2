@@ -10,16 +10,15 @@
 	<h1>Which State Has the Best <span id="h1-category">Pizza</span>?</h1>
 	<div id="members" class="prose">Duncan McIsaac, Yinting Luo, Jina Lee and Mo Zhang</div>
 	<div id="description" class="prose">
-		<p>Our team wanted to see if we could develop a data-driven approach to finding the state with the best pizza in the country. We filtered a <a target="_blank" href="http://www.biggestuscities.com/">2013 census dataset</a> to find each state's most populated city to use as a representative, and then queried the Yelp API to find the top 40 pizza restaurants in each city. We created a weighted average rating for each state, and compared ratings across states, assigning different colors to different buckets of ratings. But then we thought, why stop at pizza? We added Mexican, Chinese and bars into the mix because we like what those establishments have to offer. We then added the top three Yelp categories for food in the United States found by a <a target="_blank" href="http://www.huffingtonpost.com/2015/01/14/most-popular-cuisine-state_n_6457252.html">Huffington Post analysis</a>: BBQ, Southern and Steak.</p>
+		<p>Our team wanted to see if we could develop a data-driven approach to finding the state with the best pizza in the country. We first filtered a <a target="_blank" href="http://www.biggestuscities.com/">2013 census dataset</a> to find each state's most populous city. We then used each city as a sample for its respective state, and queried the Yelp API to find the highest-rated 40 pizza restaurants in each city. We created a weighted average rating for each state, and compared ratings across states, assigning different colors to different buckets of ratings. But then we thought, why stop at pizza? We added Mexican, Chinese and bars into the mix because we like what those establishments have to offer. We then added three popular yet generic Yelp categories for food in the United States found by a <a target="_blank" href="http://www.huffingtonpost.com/2015/01/14/most-popular-cuisine-state_n_6457252.html">Huffington Post analysis</a>: BBQ, Southern and Steak.</p>
+		<p>Even though we made 40 queries per city, not all cities will show 40 restaurants. Sometimes, Yelp's "Highest Rated" algorithm returns restaurants in a city's suburbs, which we did not include in our datasets. Other times a city just doesn't have many restaurants of a particular category (it's hard to find Southern food in North Dakota).</p>
 		<p>Toggle between categories below, and hover over each state to see specific details. Scroll down to see more analysis.</p>
 	</div>
-	<!-- <img src="../Blank_US_Map.svg"> -->
 	<div id="map-wrapper">
 		<div id="map-nav">
-		  <!-- JS: .click will analyze the data-index of $(this), split it on , and turn it into numbers, and call graphing function accordingly. It could also take $(this).html() for the chart title -->
 		  <div class="map-input selected" data-index="0">Pizza</div>
 		  <div class="map-input" data-index="1">Mexican</div>
-		  <div class="map-input" data-index="2">Chinese</div> <!-- blue red yellow green -->
+		  <div class="map-input" data-index="2">Chinese</div>
 		  <div class="map-input" data-index="3">Bars</div>
 		  <div class="map-input" data-index="4">BBQ</div>
 		  <div class="map-input" data-index="5">Southern</div>
@@ -249,11 +248,11 @@
 </div> <!-- map wrapper -->
 <div id="statistics" class="prose">
 	<strong>Normal Distribution Test</strong><br>
-	<p>Although a map provides a good overview of state and category information, we used statistical analyses to search for significance and correlation within and between our data. Our first T-test was to find whether the pizza dataset is normally distributed. Our null hypothesis H0 was that all states’ average pizza ratings follow a normal distribution. Our alternative hypothesis H1 was that all states’ average pizza ratings do not follow a normal distribution. We chose a significance level of p &lt; 0.01. Our calculated p-value was 0.017. Since 0.017 is greater than our significance level, we do not reject the null hypothesis. Therefore we can safely assume the ratings follow a normal distribution.  In addition to rating, we tested # of reviews, # of reviews per capita, # of restaurants, and the actual city population, but found that only rating and # of restaurants followed a normal distribution. A table of rating t-test results is below.</p>
+	<p>Although a map provides a good overview of state and category information, we used statistical analyses to search for significance and correlation within and between our data. Our first t-test was to find whether the pizza dataset is normally distributed. Our null hypothesis H0 was that all states’ average pizza ratings follow a normal distribution. Our alternative hypothesis H1 was that all states’ average pizza ratings do not follow a normal distribution. We chose a significance level of p &lt; 0.01. Our calculated p-value was 0.017. Since 0.017 is greater than our significance level, we do not reject the null hypothesis. Therefore we can safely assume the ratings follow a normal distribution.  In addition to rating, we tested # of reviews, # of reviews per capita, # of restaurants, and the actual city population, but found that only rating and # of restaurants followed a normal distribution. A table of rating t-test results is below.</p>
 	<table>
 		<tr>
 			<th>Category</th>
-			<th>p</th>
+			<th>p-value</th>
 			<th>Normal?</th>
 		</tr>
 		<tr>
@@ -277,9 +276,62 @@
 		<tr>
 			<td>Steak</td><td>0.012</td><td>Yes</td>
 		</tr>
-	</table><br>
-	<strong>One-Sample T-Test</strong><br>
+	</table><br><br><br>
+	<strong>One Sample T-Test</strong><br>
+	<p>We next performed one sample t-tests on ratings of categories with normal distributions. Our null hypothesis H0 was that the weighted average rating mean for a cuisine would have a rating of at least 4. The alternate hypothesis H1 was that the weighted average rating mean for a cuisine would have a rating of less than 4. We chose a significance level of p &lt; 0.01. We found that bars and Southern food were the only two categories that did not reject H0, so their weighted average rating mean is greater than or equal to 4. A table of rating t-tests for normally distributed categories is below.</p>
+	<table>
+		<tr>
+			<th>Category</th>
+			<th>t-value</th>
+			<th>p-value</th>
+			<th>&gt;= 4?</th>
+		</tr>
+		<tr>
+			<td>Pizza</td><td>-3.277</td><td>0.002</td><td>No</td>
+		</tr>
+		<tr>
+			<td>Mexican</td><td>-5.486</td><td>1.359e-06</td><td>No</td>
+		</tr>
+		<tr>
+			<td>Bars</td><td>-2.089</td><td>0.0412</td><td>Yes</td>
+		</tr>
+		<tr>
+			<td>BBQ</td><td>-5.049</td><td>6.267e-06</td><td>No</td>
+		</tr>
+		<tr>
+			<td>Southern</td><td>-2.470</td><td>0.017</td><td>Yes</td>
+		</tr>
+		<tr>
+			<td>Steak</td><td>-7.425</td><td>1.302e-09</td><td>No</td>
+		</tr>
+	</table><br><br><br>
+	<strong>Two Sample T-Test</strong>
+	<p>We performed a series of two sample t-tests comparing the weighted average ratings of two categories. We chose a p level of 0.01 to search for significance. We did not test every pair permutation of the seven different categories, but below are four combinations.</p>
+	<p><span>H0: the pizza and Chinese categories have the same weighted average rating across the states distribution</span><br>
+	<span>H1: the pizza and Chinese categories do not have the same weighted average rating across the states distribution</span><br>
+	<span>We found that p = 2.32e-07, so H0 was rejected as p &lt; 0.01. However, we did find that t &gt; 0 and p/2 &lt; the significance level, meaning there is enough evidence to conclude that the pizza rating is significantly higher than the Chinese rating.</span></p>
+	<p><span>H0: the pizza and Mexican weighted average ratings are equal</span><br>
+	<span>H1: the pizza and Mexican weighted average ratings are not equal</span><br>
+	<span>We found that p = 0.003, so H0 was rejected as p &lt; 0.01. We found that t &gt; 0 and p/2 &lt; the significance level, which means we can conclude that the pizza rating is significantly greater than the Mexican rating.</span></p>
+	<p><span>H0: the bar and pizza weighted average ratings are equal</span><br>
+	<span>H1: the bar and pizza weighted average ratings are not equal</span><br>
+	<span>We found that p = 0.64, so H0 was not rejected as p &gt; 0.01. The bar rating is not significantly different from the pizza rating.</span></p><br><br>
+	<strong>Correlation</strong>
+	<p>We performed Pearson Correlation Tests to see if there were any significant correlations between our rating data and the population data we gathered from the Census datasets. The null hypothesis for our first test was H0: there is a statistically significant relationship between the rating data and population data. The alternate hypothesis was H1: there is not a statistically significant relationship between the rating data and the population data. We found a Pearson coefficient of 0.23, and since 0.20 &lt; the Pearson coefficient &lt; 0.29, there was a weak positive correlation. We found p = 0.09, so we did not reject H0 as p &gt; 0.01. Therefore there is no correlation. We performed the same test on our rating data and the population median age data, and found negligible correlation between rating and population median age.</p><br><br>
 
+	<strong>ANOVA Analysis</strong>
+	<p>We performed ANOVA to analyze the differences between the seven cuisines' ratings. Our null hypothesis for the ANOVA test was H0: the ratings of all groups are follow the same distribution. In other words, there is no difference in ratings between each category of cuisine. Our alternate hypothesis was H1: cuisine categories can be discriminated between at least 2 groups. We ran the ANOVA tests on all 51 states (includes Washington, DC as a state), and found that 35 of the 51 states' ratings between the seven cuisines are significantly different (in this case, p &lt; 0.05).</p><br><br>
+	<strong>ANOVA Interpretation and Box Plots</strong>
+	<div id="col-wrapper">
+		<div class="stats-col col-text">
+			<p>We can gain a good visual overview of the ratings of cuisines through a box plot. It is always important to consider the pattern of the whole distribution of responses, which box plots display nicely. Although the ANOVA tests were run 51 times, we are going to explain one of the clearest examples in a box plot.</p>
+			<p>For the Louisiana ANOVA, p = 2.64e-07, which is considerably lower than our threshold of 0.05. Since p is lower than the threshold, we can say that at least 2 groups are different from each other. A clear example of this difference is a comparison of the overall customer satisfaction for the bars (the highest rating, 4.33) compared to those of Chinese restaurants (the lowest rating, 3.52). A comparison of Chinese and Southern ratings illustrate a good example of variation within cuisine categories. Although the mean Southern rating is much higher than the mean Chinese rating (4.097 &gt; 3.519), Southern ratings have considerably more spread.</p>
+		</div>
+		<div class="stats-col col-img"><img src="../louisiana.png" /></div>
+	</div>
+	<br><br>
+	<p>We decided not to include additional box plots for state cuisine ratings both due space constraints and because a by-state box plot does not properly weight ratings by review count. The following static box plot represents the a seven-cuisine comparison similar to the Louisiana example, except it analyzes each cuisine category's weighted average rating dataset for states used in the t-tests. We found that all cuisine categories have similar lower quartile, median and upper quartile values, but Mexican, bars, BBQ and Steak have a larger spread between maximum and minimum values. Additionally, bars has the highest maximum, whereas Steak has the lowest minimum, and Southern has the most extreme outliers.</p>
+	
 
 </div>
 
@@ -287,6 +339,9 @@
 	<div id="boxplot-wrapper">
 	</div>
 </section>
+<p class="prose">The answer to our question of which state has the best pizza (or any other category of cuisine) was determined by a weighted average rating. Oftentimes we made unexpected findings, as in the case of Phoenix, Arizona having better pizza than Chicago, Illinois and New York, New York. However, the latter two cities have a significantly higher number of reviews. In the treemap below, each color represents a category of cuisine. The size of the colored block represents its portion of the total number of reviews in our datasets. Each smaller cell inside of the larger ones represents a state. Each state cell's size represents its portion of the total number of reviews for that particular category.</p>
+<p class="prose">Hover over the cells to see the difference in percentage of reviews for each state.</p>
+
 </div>
 <div id="tooltip" class="tree hidden">
   <p><strong id="header"></strong></p>

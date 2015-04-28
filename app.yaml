@@ -8,6 +8,9 @@ handlers:
 - url: /favicon\.ico
   static_files: favicon.ico
   upload: favicon\.ico
+- url: /louisiana\.png
+  static_files: louisiana.png
+  upload: louisiana\.png
 
 - url: /data
   static_dir: data

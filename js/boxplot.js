@@ -1,7 +1,7 @@
 $(function() {
 	var labels = true; // show the text labels beside individual boxplots?
 var margin = {top: 30, right: 50, bottom: 80, left: 50};
-var  width = 1100 - margin.left - margin.right;
+var  width = 1000 - margin.left - margin.right;
 var height = 600 - margin.top - margin.bottom;
 	
 var min = Infinity,

@@ -6,7 +6,7 @@ body {
 	margin: 0;
 }
 
-#page { width: 1200px; margin: 0 auto;}
+#page { width: 1000px; margin: 0 auto;}
 
 #map-wrapper {
 	margin: 0 auto;
@@ -169,7 +169,26 @@ tr:nth-child(even) { background-color: #B6B6B6; }
 	float: left;
 }
 
+#col-wrapper {
+	margin-top: 10px;
+}
 
+.stats-col {
+	width: 450px;
+	height: 360px;
+	float: left;
+}
+.stats-col.col-text {
+	margin-left: 50px;
+}
+.stats-col.col-img{ 
+	margin-right: 50px;
+}
+
+
+.stats-col img {
+	width: 400px;
+}
 
 
 /* TREEMAP */
