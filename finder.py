@@ -235,9 +235,9 @@ def get_rating_and_review_count(restaurants):
         total_weight += weight
         total_review_count += review_count
     # calculate adjusted rating
-    if total_review_count != 0: # debugging
+    if total_review_count != 0:
         adjusted_rating = total_weight / total_review_count
-    else:
+    else: # debugging
         adjusted_rating = [total_weight, total_review_count]
     return adjusted_rating, total_review_count
 

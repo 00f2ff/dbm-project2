@@ -18,6 +18,17 @@ h1 {
 	text-align: center;
 	margin-bottom: 20px;
 }
+
+#members {
+	font-size: 1.1em;
+}
+
+.prose {
+	text-align: center;
+}
+
+a { text-decoration: none; color: #2196F3; }
+
 /*h1 span::first-letter{text-transform: uppercase;}*/
 
 #map-nav {  
@@ -52,6 +63,18 @@ h1 {
 .graph-input:hover {
 	background-color: rgba(182,182,182,1);
 }
+
+#comparison {
+	width: 500px;
+	margin: 0 auto;
+	text-align: center;
+}
+#comparison div { width: 250px; margin-bottom: 10px;}
+#comparison span { font-weight: bold; }
+#comparison div:nth-child(odd) { float: left; }
+#comparison div:nth-child(even) { float: right; }
+
+#analysis { margin: 0 auto; width: 700px; }
 
 .state 
 {
@@ -141,6 +164,13 @@ tr:nth-child(even) { background-color: #B6B6B6; }
 	width: 30px;
 	height: inherit;
 }
+
+#statistics {
+	float: left;
+}
+
+
+
 
 /* TREEMAP */
 .treemap-wrapper {

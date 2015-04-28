@@ -1,5 +1,15 @@
 $(function() {
 
+	var analyses = {
+		"pizza": "Despite the eternal argument as to whether pizza from New York, NY or Chicago, IL is better, if we look just at ratings it appears Phoenix, AZ's pizza wins. For a more detailed comparison of reviews by state, scroll to the treemap at the bottom of the page.",
+		"mexican": "Unsurprisingly, most of the best Mexican ratings are clustered in the Southwestern states. It is interesting that Alaska has a much better rating than Montana considering its geographic location.",
+		"chinese": "Great Chinese food can be found all over the United States, with the exception of Montana, Wyoming and Alaska.",
+		"bars": "We know people don't go to bars to eat, but we still wanted to take a look. Cities famous for their bars such as New Orleans, LA, Las Vegas, NV, Seattle, WA, Portland, OR, New York, NY and Washington, DC are represented well here.",
+		"bbq": "With the exception of Alaska and Rhode Island, the entire United States has pretty good BBQ. The Southeast has the largest pocket of high ratings.",
+		"southern": "The states in gray didn't turn up any Southern restaurants. Although Iowa and Wyoming have the highest ratings, they have considerably fewer reviews than states in the South. Check out the treemap for a better breakdown of reviews.",
+		"steak": "Steak, like pizza, is an American favorite. Although New Jersey edged out other states for the top title, it has fewer reviews than most of the other high-rated contenders."
+	}
+
 
 	function changeDataset(index) {
 		var category = Object.keys(data[index].data)[0],
@@ -28,6 +38,8 @@ $(function() {
 			category_string = 'Steak';
 		}
 		$('#h1-category').text(category_string);
+		// add analysis
+		$('#analysis p').text(analyses[category]);
 		// add low and high values
 		var lr = min_rating.toFixed(2),
 			hr = max_rating.toFixed(2);

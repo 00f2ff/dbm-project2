@@ -1,8 +1,8 @@
 $(function() {
 	var labels = true; // show the text labels beside individual boxplots?
-var margin = {top: 30, right: 50, bottom: 70, left: 50};
+var margin = {top: 30, right: 50, bottom: 80, left: 50};
 var  width = 1100 - margin.left - margin.right;
-var height = 750 - margin.top - margin.bottom;
+var height = 600 - margin.top - margin.bottom;
 	
 var min = Infinity,
     max = -Infinity;
@@ -129,7 +129,7 @@ d3.csv("/data/wisker.csv", function(error, csv) {
 			    .style("font-weight", "bold")
 			    .attr("x", width / 2)
 			    .attr("y", height + margin.bottom/1.9) // prevents cutoff
-			    .attr("dy", "3em") 
+			    .attr("dy", "2.3em") 
 			    .text("Cuisine");
 		 
 			// draw y axis
